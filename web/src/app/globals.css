@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-ibm), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --color-night: #0a0e14;
+  --color-deep: #121722;
+  --color-paper: #e9e2d3;
+  --color-muted: #a9a18d;
+  --color-faint: #6b6453;
+  --color-signal: #f2713c;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-night);
+  color: var(--color-paper);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-signal);
+  color: var(--color-night);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Graticule grid, like a basemap overlay */
+.graticule {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(233, 226, 211, 0.045) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(90deg, rgba(233, 226, 211, 0.045) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(0deg, rgba(233, 226, 211, 0.07) 0 1px, transparent 1px 360px),
+    repeating-linear-gradient(90deg, rgba(233, 226, 211, 0.07) 0 1px, transparent 1px 360px);
+}
+
+.vignette {
+  background: radial-gradient(
+    120% 90% at 50% 0%,
+    transparent 40%,
+    rgba(10, 14, 20, 0.92) 100%
+  );
+}
+
+/* Scroll reveal (toggles via Reveal component) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Hero entrance */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hero-rise {
+  animation: rise 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* Section heading rule with a signal lead */
+.rule-signal {
+  background: linear-gradient(
+    90deg,
+    var(--color-signal) 0 72px,
+    rgba(233, 226, 211, 0.12) 72px 100%
+  );
+}
